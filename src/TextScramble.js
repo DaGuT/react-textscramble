@@ -11,37 +11,15 @@ import PropTypes from 'prop-types';
  * @extends {Component}
  */
 class TextScramble extends Component {
-  static propTypes = {
-    /**
-     * array of phrases that should be shown to the user
-     */
-    "phrases": PropTypes
-      .arrayOf(PropTypes.string)
-      .isRequired,
-    /**
-     * function that will be called each time phrase was fully shown
-     * it has argument that shows in percent ([0,1]) what progress was made
-     */
-    "reportProgress":PropTypes.func,
-    /**
-    * time that each phrase should be displayed after appearing. 
-    * Default value: 800
-    */
-    "freezeDuration": PropTypes.number,
-    /**
-     * set this to true if you want this text to loop over all phrases again and again (infinitely)
-     * Default value: false
-     */
-    "isInfiniteLoop": PropTypes.bool,
-  }
-  static defaultProps = {
-    freezeDuration: 800,
-    isInfiniteLoop: false
+  constructor() {
+    super();
+    this.scrambleRef = React.createRef();
   }
 
   //after component is mounted, we start our magic
   componentDidMount() {
-    const el = this.refs.TextScramble;
+
+    const el = this.scrambleRef.current;
     const fx = new TextScrambleHelper(el);
 
     let counter = 0;
@@ -67,9 +45,37 @@ class TextScramble extends Component {
 
   render() {
     return (
-      <div ref="TextScramble"></div>
+      <div ref={this.scrambleRef}></div>
     );
   }
+}
+
+TextScramble.propTypes = {
+  /**
+   * array of phrases that should be shown to the user
+   */
+  "phrases": PropTypes
+    .arrayOf(PropTypes.string)
+    .isRequired,
+  /**
+   * function that will be called each time phrase was fully shown
+   * it has argument that shows in percent ([0,1]) what progress was made
+   */
+  "reportProgress":PropTypes.func,
+  /**
+  * time that each phrase should be displayed after appearing. 
+  * Default value: 800
+  */
+  "freezeDuration": PropTypes.number,
+  /**
+   * set this to true if you want this text to loop over all phrases again and again (infinitely)
+   * Default value: false
+   */
+  "isInfiniteLoop": PropTypes.bool,
+}
+TextScramble.defaultProps = {
+  freezeDuration: 800,
+  isInfiniteLoop: false
 }
 
 /**

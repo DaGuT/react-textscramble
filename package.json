@@ -1,24 +1,38 @@
 {
-    "main":"TextScramble",
-    "author":"Alexander Mongolin (DaGuT)" ,
-    "name": "react-textscramble",
-    "version":"1.0.0",
-    "description": "Fancy text scramble effect for react",
-    "license": "MIT",
-    "repository": {
-		"type": "git",
-		"url": "git+https://github.com/DaGuT/react-textscramble.git"
-    },
-    "keywords": [
-      "textscramble",
-      "npm",
-      "package",
-      "dagut",
-      "react",
-      "animation"
-    ],
-    "dependencies": {
-		"prop-types": "^15.5.8",
-		"react": "^16.8.6"
-	}
+  "main": "./build/TextScramble",
+  "author": "Alexander Mongolin (DaGuT)",
+  "name": "react-textscramble",
+  "version": "1.0.3",
+  "description": "Fancy text scramble effect for react",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DaGuT/react-textscramble.git"
+  },
+  "keywords": [
+    "textscramble",
+    "npm",
+    "package",
+    "dagut",
+    "react",
+    "animation"
+  ],
+  "dependencies": {
+    "prop-types": "^15.7.2",
+    "react": "^16.9.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.6",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.7",
+    "webpack-dev-server": "^3.8.0"
+  },
+  "scripts": {
+    "build": "webpack",
+    "npm:publish": "webpack && npm publish"
+  }
 }

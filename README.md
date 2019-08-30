@@ -82,7 +82,7 @@ export default class MainScreen extends Component {
   }
 }
 ```
-and css
+and MainScreen.css
 ```
 @import 'https://fonts.googleapis.com/css?family=Roboto+Mono:100';
 .MainScreen {

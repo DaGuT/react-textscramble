@@ -1,7 +1,7 @@
 {
     "main":"TextScramble",
     "author":"Alexander Mongolin (DaGuT)" ,
-    "name": "@dagut/react-textscramble",
+    "name": "react-textscramble",
     "version":"1.0.0",
     "description": "Fancy text scramble effect for react",
     "license": "MIT",

@@ -42,7 +42,7 @@ class TextScramble extends Component {
           })
           .catch((e) => {
             if (e.isCanceled) {
-              console.log('Component was unmounted, progress will not be reported');
+              //console.log('Component was unmounted, progress will not be reported');
             } else {
               console.log(e);
             }
@@ -157,6 +157,7 @@ class TextScrambleHelper {
     if (complete === this.queue.length) {
       this.resolve();
     } else {
+      if (this.cancelablePromise.hasCanceled_) this.reject({isCanceled:true});
       this.frameRequest = requestAnimationFrame(this.update);
       this.frame++;
     }

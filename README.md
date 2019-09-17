@@ -24,7 +24,7 @@ npm install react-textscramble
 ## Example with progress bar
 ```
 import React, {Component} from 'react';
-import TextScramble from 'react-textscramble'; 
+import TextScramble from 'react-textscramble';
 import './MainScreen.css';
 
 /**
@@ -42,35 +42,34 @@ export default class MainScreen extends Component {
     this.state = {
       scrambleProgess: 0
     }
-
-    this.skipScramble = this
-      .skipScramble
-      .bind(this);
   }
-
-  skipScramble() {}
 
   render() {
     // phrases list and freeDuration for TextScramble. Defined here just for
     // visibility
-    let phrases = ['Hi', 'How are you doing?', 'I am doing it!'];
+    let phrases = [
+      'Hi',
+      'How are you doing?',
+      'I am still working on this site!',
+      'So something might not be working',
+      'And site will change a little bit in the end',
+      'But please enjoy your visit! ☺'
+    ];
     let freezeDuration = 1600;
 
     //and now we render :)
     return (
       <div className="MainScreen">
-        {/*we only display scramble skip button while we show that scramble text*/
-        this.state.scrambleProgess < 1 && <div className="top-right-text">
+        <div className="top-right-text">
           <span className="TextScramble-progressbar">
             <span
-              onClick={this.skipScramble}
               className="underline"
               style={{
               'width': `${Math.floor(this.state.scrambleProgess * 100)}%`
-            }}></span>skip</span>
-        </div>}
+            }}></span>progress bar :)</span>
+        </div>
         <div className="scramble-container">
-          <TextScramble
+         <TextScramble
             phrases={phrases}
             freezeDuration={freezeDuration}
             reportProgress={(progress) => {
@@ -81,6 +80,7 @@ export default class MainScreen extends Component {
     )
   }
 }
+
 ```
 and MainScreen.css
 ```

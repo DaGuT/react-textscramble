@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
  * @class TextScramble
  * @extends {Component}
  */
+
 class TextScramble extends Component {
   constructor() {
     super();
@@ -35,10 +36,12 @@ class TextScramble extends Component {
         fx
           .setText(this.props.phrases[counter])
           .then(() => {
-            this.props.reportProgress && !this.fx.hasCanceled_ && this
-              .props
-              .reportProgress(counter / this.props.phrases.length);
-            setTimeout(next, this.props.freezeDuration);
+            if (!this.fx.hasCanceled_) {
+              this.props.reportProgress && this
+                .props
+                .reportProgress(counter / this.props.phrases.length);
+              setTimeout(next, this.props.freezeDuration);
+            }
           })
           .catch((e) => {
             if (e.isCanceled) {
@@ -171,8 +174,10 @@ class TextScrambleHelper {
 // componentwillunmount
 const makeCancelable = (promise) => {
   let hasCanceled_ = false;
+  let outerReject;
 
   const wrappedPromise = new Promise((resolve, reject) => {
+    outerReject = reject;
     promise.then(val => hasCanceled_
       ? reject({isCanceled: true})
       : resolve(val), error => hasCanceled_
@@ -184,6 +189,7 @@ const makeCancelable = (promise) => {
     promise: wrappedPromise,
     cancel() {
       hasCanceled_ = true;
+      outerReject({isCanceled: true});
     }
   };
 };
